@@ -15,10 +15,13 @@ TextPurifier-AI is an AI-powered text classification application that identifies
 ---
 
 ### **Spam Example**
-![Spam Example](images/Spam.png)
+(https://github.com/user-attachments/assets/6b17f9c5-5bc4-461c-aeb7-947b5cb6e145)
+
 
 ### **Ham Example**
-![Ham Example](images/Ham.png)
+(https://github.com/user-attachments/assets/c39ff258-1438-4109-bd61-7d6479fd1c44)
+
+
 
 ---
 
