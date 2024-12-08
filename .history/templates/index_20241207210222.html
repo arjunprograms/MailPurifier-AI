@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam SMS Classifier</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            width: 500px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+
+        textarea {
+            width: 90%;
+            height: 100px;
+            font-size: 16px;
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            resize: none;
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333333;
+        }
+
+        .result.spam {
+            color: #ff0000; /* Red for spam */
+        }
+
+        .result.ham {
+            color: #28a745; /* Green for ham */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Spam SMS Classifier</h1>
+        <form action="/predict" method="POST">
+            <textarea name="email_text" placeholder="Paste your SMS message here..."></textarea><br>
+            <button type="submit">Classify</button>
+        </form>
+        {% if result %}
+        <div class="result {{ 'spam' if result == 'Spam' else 'ham' }}">
+            Result: {{ result }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

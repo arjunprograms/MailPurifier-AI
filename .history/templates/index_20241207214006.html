@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam SMS Classifier</title>
+    <style>
+        /* General styling for simplicity */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            width: 500px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        textarea {
+            width: 90%;
+            height: 100px;
+            margin-bottom: 15px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button.classify {
+            background-color: #007BFF;
+            color: white;
+        }
+        button.clear {
+            background-color: #f44336;
+            color: white;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .result.spam {
+            color: #cc0000;
+        }
+        .result.ham {
+            color: #006600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Spam SMS Classifier</h1>
+        <form action="/predict" method="POST">
+            <textarea name="email_text" placeholder="Paste your SMS message here...">{{ input_text }}</textarea><br>
+            <button type="submit" class="classify">Classify</button>
+            <button type="button" class="clear" onclick="clearText()">Clear</button>
+        </form>
+        {% if result %}
+            <div class="result {{ 'spam' if result == 'Spam' else 'ham' }}">
+                {{ result }}
+            </div>
+            <p>{{ advice }}</p>
+        {% endif %}
+    </div>
+
+    <script>
+        // JavaScript function to clear the text area
+        function clearText() {
+            document.querySelector('textarea').value = "";
+        }
+    </script>
+</body>
+</html>

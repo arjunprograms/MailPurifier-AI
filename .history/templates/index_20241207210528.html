@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam SMS Classifier</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+            color: #333333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Container Styling */
+        .container {
+            background-color: white;
+            width: 500px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        /* Header Styling */
+        .header {
+            background: #007BFF;
+            color: white;
+            padding: 15px 0;
+            border-radius: 10px 10px 0 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Form Styling */
+        textarea {
+            width: 90%;
+            height: 100px;
+            font-size: 16px;
+            padding: 10px;
+            border: 1px solid #cccccc;
+            border-radius: 5px;
+            resize: none;
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        /* Result Box Styling */
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333333;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .result.spam {
+            background-color: #ffcccc;
+            color: #cc0000;
+        }
+
+        .result.ham {
+            background-color: #ccffcc;
+            color: #006600;
+        }
+
+        /* Footer Styling */
+        .footer {
+            margin-top: 15px;
+            font-size: 12px;
+            color: #555555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            Spam SMS Classifier
+        </div>
+        <form action="/predict" method="POST">
+            <textarea name="email_text" placeholder="Paste your SMS message here..."></textarea><br>
+            <button type="submit">Classify</button>
+        </form>
+        {% if result %}
+        <div class="result {{ 'spam' if result == 'Spam' else 'ham' }}">
+            {{ result }}
+        </div>
+        {% endif %}
+        <div class="footer">
+            CPSC 481 Term Project
+        </div>
+    </div>
+</body>
+</html>
